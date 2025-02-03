@@ -1,21 +1,47 @@
 import React, { useState } from "react";
 import { TextInput, StyleSheet, View, Pressable, Text } from "react-native";
+import { Message } from "./ChatBox";
+import { getMockChatbotResponse } from "../utils/mock/getMockChatbotResponse";
 
-export const ChatInput = () => {
+type SetMessagesState = React.Dispatch<React.SetStateAction<Message[]>>;
+
+type ChatInputProps = {
+  messages: Message[];
+  setMessages: SetMessagesState;
+};
+
+export const ChatInput: React.FC<ChatInputProps> = ({
+  messages,
+  setMessages,
+}) => {
   const [text, setText] = useState<string>("");
 
   const handleSend = () => {
-    console.log(text);
+
+    const userMessage: Message = {
+      text: text,
+      author: "user",
+    };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setText("");
+
+    const chatbotMessage = getMockChatbotResponse() as Message;
+    setMessages((prevMessages) => [...prevMessages, chatbotMessage]);
   };
 
   return (
     <View style={styles.container}>
       <TextInput
+        value={text}
         onChangeText={setText}
         style={styles.textInput}
         placeholder="Užduok klausimą"
       />
-      <Pressable onPress={handleSend} style={styles.sendButton} disabled={!text.trim()}>
+      <Pressable
+        onPress={handleSend}
+        style={styles.sendButton}
+        disabled={!text.trim()}
+      >
         <Text style={styles.sendButtonText}>Siųsti</Text>
       </Pressable>
     </View>
@@ -42,14 +68,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   sendButton: {
-    backgroundColor: 'black',
+    backgroundColor: "black",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
   },
   sendButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
     textAlign: "center",
   },
 });

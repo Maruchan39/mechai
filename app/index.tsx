@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
-import { ChatInput } from "../components/ChatInput";
+import { StyleSheet, Text } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { Chatbox } from "@/components/ChatBox";
 
 export default function Index() {
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <Text style={styles.h1}>Kuo galiu padėti?</Text>
-        <ChatInput />
+        <Chatbox />
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -15,15 +15,10 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    alignSelf: 'center',
+    alignSelf: "center",
+    height: "100%",
     width: "90%",
-    position: 'relative'
-  },
-  h1: {
-    fontSize: 34,
-    fontWeight: "bold",
   },
 });
