@@ -1,6 +1,6 @@
-import React from "react";
-import { type Message } from "./ChatBox";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { type Message } from './ChatBox';
+import { View, Text, StyleSheet } from 'react-native';
 
 export type ChatbotMessage = Omit<Message, 'user'> & { author: 'chatbot' };
 

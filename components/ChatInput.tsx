@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { TextInput, StyleSheet, View, Pressable, Text } from "react-native";
-import { Message } from "./ChatBox";
-import { getMockChatbotResponse } from "../utils/mock/getMockChatbotResponse";
+import React, { useState } from 'react';
+import { TextInput, StyleSheet, View, Pressable, Text } from 'react-native';
+import { Message } from './ChatBox';
+import { getMockChatbotResponse } from '../utils/mock/getMockChatbotResponse';
 
 type SetMessagesState = React.Dispatch<React.SetStateAction<Message[]>>;
 
@@ -14,16 +14,16 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   messages,
   setMessages,
 }) => {
-  const [text, setText] = useState<string>("");
+  const [text, setText] = useState<string>('');
 
   const handleSend = () => {
 
     const userMessage: Message = {
       text: text,
-      author: "user",
+      author: 'user',
     };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
-    setText("");
+    setText('');
 
     const chatbotMessage = getMockChatbotResponse() as Message;
     setMessages((prevMessages) => [...prevMessages, chatbotMessage]);
@@ -35,7 +35,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
         value={text}
         onChangeText={setText}
         style={styles.textInput}
-        placeholder="Užduok klausimą"
+        placeholder='Užduok klausimą'
       />
       <Pressable
         onPress={handleSend}
@@ -50,32 +50,32 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 10,
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
-    width: "100%",
-    backgroundColor: "#fff",
+    width: '100%',
+    backgroundColor: '#fff',
   },
   textInput: {
     flex: 1,
     height: 40,
     marginRight: 10,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: '#ccc',
     borderRadius: 10,
     paddingHorizontal: 10,
   },
   sendButton: {
-    backgroundColor: "black",
+    backgroundColor: 'black',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
   },
   sendButtonText: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { ChatInput } from "./ChatInput";
-import { UserMessage, UserMessageBubble } from "./UserMessageBubble";
-import { ChatbotMessage, ChatbotMessageBubble } from "./ChatbotMessageBubble";
+import React, { useState } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import { ChatInput } from './ChatInput';
+import { UserMessage, UserMessageBubble } from './UserMessageBubble';
+import { ChatbotMessage, ChatbotMessageBubble } from './ChatbotMessageBubble';
 
 export type Message = {
   text: string;
@@ -48,13 +48,13 @@ export const Chatbox = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-    width: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: '100%',
   },
   h1: {
     fontSize: 34,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });

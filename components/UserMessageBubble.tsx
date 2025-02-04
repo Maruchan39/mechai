@@ -1,8 +1,8 @@
-import React from "react";
-import { type Message } from "./ChatBox";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { type Message } from './ChatBox';
+import { View, Text, StyleSheet } from 'react-native';
 
-export type UserMessage = Omit<Message, "author"> & { author: "user" };
+export type UserMessage = Omit<Message, 'author'> & { author: 'user' };
 
 type UserMessageBubbleProps = {
   message: UserMessage;
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: '#ccc',
   },
 });
 
