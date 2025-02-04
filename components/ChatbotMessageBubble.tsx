@@ -1,6 +1,6 @@
 import React from "react";
 import { type Message } from "./ChatBox";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 export type ChatbotMessage = Omit<Message, 'user'> & { author: 'chatbot' };
 
@@ -10,10 +10,16 @@ type ChatbotMessageBubbleProps = {
 
 export const ChatbotMessageBubble: React.FC<ChatbotMessageBubbleProps> = ({ message }) => {
   return (
-   <View>
+   <View style={styles.container}>
     <Text>{message.text}</Text>
    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 16,
+  },
+});
 
 export default ChatbotMessageBubble;
