@@ -2,7 +2,7 @@ import React from 'react';
 import { type Message } from './ChatBox';
 import { View, Text, StyleSheet } from 'react-native';
 
-export type UserMessage = Omit<Message, 'author'> & { author: 'user' };
+export type UserMessage = Message & { author: 'user' };
 
 type UserMessageBubbleProps = {
   message: UserMessage;
