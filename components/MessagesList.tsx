@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import UserMessageBubble, { UserMessage } from './UserMessageBubble';
 import { Message } from './ChatBox';
 import ChatbotMessageBubble, { ChatbotMessage } from './ChatbotMessageBubble';
@@ -28,25 +28,15 @@ export const MessagesList: React.FC<MessagesListProps> = ({ messages }) => {
     });
   };
 
-  return (
-    <View style={styles.container}>
-      {messages.length ? (
-        renderMessages()
-      ) : (
-        <Text style={styles.h1}>Kuo galiu padėti?</Text>
-      )}
-    </View>
-  );
+  return <ScrollView style={styles.container}>{renderMessages()}</ScrollView>;
 };
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-  },
-  h1: {
-    fontSize: 34,
-    fontWeight: 'bold',
-    alignSelf: 'center'
+    minHeight: '100%',
+    flex: 1,
+    padding: 16,
+    bottom: 60,
   },
 });
 
