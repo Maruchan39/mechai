@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import UserMessageBubble, { UserMessage } from './UserMessageBubble';
 import { Message } from './ChatBox';
 import ChatbotMessageBubble, { ChatbotMessage } from './ChatbotMessageBubble';
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     flex: 1,
     padding: 16,
-    bottom: 60,
+    // bottom: 60,
   },
 });
 

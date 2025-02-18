@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { TextInput, StyleSheet, View, Pressable, Text } from 'react-native';
 import { Message } from './ChatBox';
-import { getMockChatbotResponse } from '../utils/mock/getMockChatbotResponse';
+import { getChatbotResponseFromServer } from '../api/api';
+import { UserMessage } from './UserMessageBubble';
 
 type SetMessagesState = React.Dispatch<React.SetStateAction<Message[]>>;
 
@@ -16,16 +17,16 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 }) => {
   const [text, setText] = useState<string>('');
 
-  const handleSend = () => {
+  const handleSend = async () => {
 
-    const userMessage: Message = {
+    const userMessage: UserMessage = {
       text: text,
       author: 'user',
     };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setText('');
 
-    const chatbotMessage = getMockChatbotResponse() as Message;
+    const chatbotMessage = await getChatbotResponseFromServer(userMessage);
     setMessages((prevMessages) => [...prevMessages, chatbotMessage]);
   };
 
