@@ -1,18 +1,26 @@
 import React from 'react';
+import MarkdownIt from 'markdown-it';
+import RenderHtml from 'react-native-render-html';
+import { View, StyleSheet } from 'react-native';
 import { type Message } from './ChatBox';
-import { View, Text, StyleSheet } from 'react-native';
 
 export type ChatbotMessage = Message & { author: 'chatbot' };
 
 type ChatbotMessageBubbleProps = {
-    message: ChatbotMessage
-}
+  message: ChatbotMessage;
+};
 
-export const ChatbotMessageBubble: React.FC<ChatbotMessageBubbleProps> = ({ message }) => {
+const md = MarkdownIt();
+
+export const ChatbotMessageBubble: React.FC<ChatbotMessageBubbleProps> = ({
+  message,
+}) => {
+  const html = md.render(message.text);
+
   return (
-   <View style={styles.container}>
-    <Text>{message.text}</Text>
-   </View>
+    <View style={styles.container}>
+      <RenderHtml source={{ html: html }} />
+    </View>
   );
 };
 
