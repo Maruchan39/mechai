@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { ChatInput } from './ChatInput';
 import MessagesList from './MessagesList';
+import Loader from './Loader';
 
 export type Message = {
   text: string;
@@ -10,15 +11,16 @@ export type Message = {
 
 export const Chatbox = () => {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState<Boolean>(false);
 
   return (
     <View style={styles.container}>
-        {messages.length ? (
-          <MessagesList messages={messages} />
-        ) : (
-          <Text style={styles.h1}>Kuo galiu padėti?</Text>
-        )}
-      <ChatInput messages={messages} setMessages={setMessages} />
+      {messages.length ? (
+        <MessagesList messages={messages} loading={loading} />
+      ) : (
+        <Text style={styles.h1}>Kuo galiu padėti?</Text>
+      )}
+      <ChatInput setMessages={setMessages} setLoading={setLoading} />
     </View>
   );
 };

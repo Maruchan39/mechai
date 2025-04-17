@@ -3,31 +3,44 @@ import { TextInput, StyleSheet, View, Pressable, Text } from 'react-native';
 import { Message } from './ChatBox';
 import { getChatbotResponseFromServer } from '../api/api';
 import { UserMessage } from './UserMessageBubble';
+import { ChatbotMessage } from './ChatbotMessageBubble';
 
 type SetMessagesState = React.Dispatch<React.SetStateAction<Message[]>>;
+type SetLoadingState = React.Dispatch<React.SetStateAction<Boolean>>;
 
 type ChatInputProps = {
-  messages: Message[];
   setMessages: SetMessagesState;
+  setLoading: SetLoadingState;
 };
 
 export const ChatInput: React.FC<ChatInputProps> = ({
-  messages,
   setMessages,
+  setLoading,
 }) => {
   const [text, setText] = useState<string>('');
 
   const handleSend = async () => {
-
+    setLoading(true);
     const userMessage: UserMessage = {
       text: text,
       author: 'user',
     };
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setMessages(prevMessages => [...prevMessages, userMessage]);
     setText('');
 
-    const chatbotMessage = await getChatbotResponseFromServer(userMessage);
-    setMessages((prevMessages) => [...prevMessages, chatbotMessage]);
+    try {
+      const chatbotMessage = await getChatbotResponseFromServer(userMessage);
+      setLoading(false);
+      setMessages(prevMessages => [...prevMessages, chatbotMessage]);
+    } catch (error) {
+      const chatbotMessage: ChatbotMessage = {
+        text: 'Sorry, I have encountered an error.',
+        author: 'chatbot',
+      };
+      setLoading(false);
+      setMessages(prevMessages => [...prevMessages, chatbotMessage]);
+      console.error(error);
+    }
   };
 
   return (
@@ -36,7 +49,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
         value={text}
         onChangeText={setText}
         style={styles.textInput}
-        placeholder='Užduok klausimą'
+        placeholder="Užduok klausimą"
       />
       <Pressable
         onPress={handleSend}

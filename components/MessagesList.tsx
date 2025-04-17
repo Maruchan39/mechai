@@ -3,12 +3,17 @@ import { StyleSheet, ScrollView } from 'react-native';
 import UserMessageBubble, { UserMessage } from './UserMessageBubble';
 import { Message } from './ChatBox';
 import ChatbotMessageBubble, { ChatbotMessage } from './ChatbotMessageBubble';
+import Loader from './Loader';
 
 type MessagesListProps = {
   messages: Message[];
+  loading: Boolean;
 };
 
-export const MessagesList: React.FC<MessagesListProps> = ({ messages }) => {
+export const MessagesList: React.FC<MessagesListProps> = ({
+  messages,
+  loading,
+}) => {
   const renderMessages = () => {
     const isUserMessage = (message: Message): message is UserMessage => {
       return message.author === 'user';
@@ -18,14 +23,19 @@ export const MessagesList: React.FC<MessagesListProps> = ({ messages }) => {
       return message.author === 'chatbot';
     };
 
-    return messages.map((message, index) => {
-      if (isUserMessage(message)) {
-        return <UserMessageBubble key={index} message={message} />;
-      }
-      if (isChatbotMessage(message)) {
-        return <ChatbotMessageBubble key={index} message={message} />;
-      }
-    });
+    return (
+      <>
+        {messages.map((message, index) => {
+          if (isUserMessage(message)) {
+            return <UserMessageBubble key={index} message={message} />;
+          }
+          if (isChatbotMessage(message)) {
+            return <ChatbotMessageBubble key={index} message={message} />;
+          }
+        })}
+        {loading && <Loader />}
+      </>
+    );
   };
 
   return <ScrollView style={styles.container}>{renderMessages()}</ScrollView>;
