@@ -8,8 +8,6 @@ export const getChatbotResponseFromServer = async (
   messages: Message[],
 ): Promise<ChatbotMessage> => {
   try {
-    // console.log(JSON.stringify(messages));
-
     const response = await fetch(`${BASE_URL}/api/chatbot`, {
       method: 'POST',
       body: JSON.stringify(messages),

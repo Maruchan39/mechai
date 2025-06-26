@@ -33,9 +33,6 @@ export const ChatInput: React.FC<ChatInputProps> = ({
     setMessages(updatedMessages);
     setText('');
 
-    console.log(updatedMessages);
-    console.log(messages);
-
     try {
       const chatbotMessage =
         await getChatbotResponseFromServer(updatedMessages);
