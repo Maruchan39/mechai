@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { ChatInput } from './ChatInput';
 import MessagesList from './MessagesList';
-import Loader from './Loader';
 
 export type Message = {
-  text: string;
-  author: 'user' | 'chatbot';
+  content: string;
+  role: 'user' | 'assistant';
 };
 
 export const Chatbox = () => {
@@ -18,9 +17,13 @@ export const Chatbox = () => {
       {messages.length ? (
         <MessagesList messages={messages} loading={loading} />
       ) : (
-        <Text style={styles.h1}>Kuo galiu padėti?</Text>
+        <Text style={styles.h1}>What can I help with?</Text>
       )}
-      <ChatInput setMessages={setMessages} setLoading={setLoading} />
+      <ChatInput
+        messages={messages}
+        setMessages={setMessages}
+        setLoading={setLoading}
+      />
     </View>
   );
 };

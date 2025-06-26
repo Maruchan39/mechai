@@ -4,7 +4,7 @@ import RenderHtml from 'react-native-render-html';
 import { View, StyleSheet } from 'react-native';
 import { type Message } from './ChatBox';
 
-export type ChatbotMessage = Message & { author: 'chatbot' };
+export type ChatbotMessage = Message & { role: 'assistant' };
 
 type ChatbotMessageBubbleProps = {
   message: ChatbotMessage;
@@ -15,7 +15,7 @@ const md = MarkdownIt();
 export const ChatbotMessageBubble: React.FC<ChatbotMessageBubbleProps> = ({
   message,
 }) => {
-  const html = md.render(message.text);
+  const html = md.render(message.content);
 
   return (
     <View style={styles.container}>

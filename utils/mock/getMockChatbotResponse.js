@@ -3,7 +3,7 @@ export const getMockChatbotResponse = () => {
 
   return {
     text: chatbotResponses[randomIndex],
-    author: 'chatbot',
+    role: 'assistant',
   };
 };
 
@@ -33,86 +33,86 @@ const chatbotResponses = [
 export const mockConversation = [
   {
     text: 'Sveiki! Kaip galiu jums padėti su jūsų automobilio priežiūra ar remontu?',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Kada paskutinį kartą keitėte automobilio alyvą?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Reguliarus alyvos keitimas yra svarbus variklio ilgaamžiškumui. Kada paskutinį kartą keitėte alyvą?',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Ar pastebėjote, kad automobilis trūkčioja važiuojant?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Jei automobilis trūkčioja važiuojant, tai gali būti užsikimšęs kuro filtras arba uždegimo žvakės problema.',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Ar reikėtų patikrinti stabdžių kaladėles, jei girdisi girgždėjimas?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Stabdžių kaladėlių keitimas yra svarbus saugumui. Ar pastebėjote, kad stabdant girdisi girgždėjimas ar vibracija?',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Kada paskutinį kartą keitėte oro filtrą?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Oro filtras turi būti keičiamas reguliariai, kad variklis gautų pakankamai švaraus oro. Kada paskutinį kartą keitėte filtrą?',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Ar verta patikrinti akumuliatorių prieš žiemą?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Jei jūsų automobilio akumuliatorius senesnis nei 3-4 metai, verta jį patikrinti prieš žiemą, kad išvengtumėte problemų užvedant.',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Ką daryti, jei variklio indikatorius prietaisų skydelyje įsijungė?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Jei variklio indikatorius prietaisų skydelyje įsijungė, geriausia kuo greičiau atlikti diagnostiką servise.',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Ar reikia reguliariai pildyti kondicionieriaus freoną?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Klimato kontrolės sistemos efektyvumui svarbu reguliariai pildyti kondicionieriaus freoną ir valyti filtrus.',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Ką daryti, jei automobilis sunaudoja daugiau degalų nei įprastai?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Deguonies jutiklis gali turėti įtakos degalų sąnaudoms. Jei jūsų automobilis sunaudoja daugiau degalų nei įprastai, verta jį patikrinti.',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Kaip dažnai reikia keisti pavarų dėžės alyvą?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Pavarų dėžės alyva turėtų būti keičiama kas 60 000 – 100 000 km, priklausomai nuo gamintojo rekomendacijų.',
-    author: 'chatbot'
+    role: 'assistant',
   },
   {
     text: 'Ar važiuoklės elementai gali sukelti bildesį?',
-    author: 'user'
+    role: 'user',
   },
   {
     text: 'Važiuoklės elementai, tokie kaip šarnyrai ar stabilizatoriaus traukės, gali susidėvėti ir sukelti bildesį. Ar pastebėjote pašalinius garsus važiuodami?',
-    author: 'chatbot'
-  }
+    role: 'assistant',
+  },
 ];

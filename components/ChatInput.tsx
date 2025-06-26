@@ -9,11 +9,13 @@ type SetMessagesState = React.Dispatch<React.SetStateAction<Message[]>>;
 type SetLoadingState = React.Dispatch<React.SetStateAction<Boolean>>;
 
 type ChatInputProps = {
+  messages: Message[];
   setMessages: SetMessagesState;
   setLoading: SetLoadingState;
 };
 
 export const ChatInput: React.FC<ChatInputProps> = ({
+  messages,
   setMessages,
   setLoading,
 }) => {
@@ -22,20 +24,27 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   const handleSend = async () => {
     setLoading(true);
     const userMessage: UserMessage = {
-      text: text,
-      author: 'user',
+      content: text,
+      role: 'user',
     };
-    setMessages(prevMessages => [...prevMessages, userMessage]);
+
+    const updatedMessages = [...messages, userMessage];
+
+    setMessages(updatedMessages);
     setText('');
 
+    console.log(updatedMessages);
+    console.log(messages);
+
     try {
-      const chatbotMessage = await getChatbotResponseFromServer(userMessage);
+      const chatbotMessage =
+        await getChatbotResponseFromServer(updatedMessages);
       setLoading(false);
       setMessages(prevMessages => [...prevMessages, chatbotMessage]);
     } catch (error) {
       const chatbotMessage: ChatbotMessage = {
-        text: 'Sorry, I have encountered an error.',
-        author: 'chatbot',
+        content: 'Sorry, I have encountered an error.',
+        role: 'assistant',
       };
       setLoading(false);
       setMessages(prevMessages => [...prevMessages, chatbotMessage]);
@@ -49,14 +58,14 @@ export const ChatInput: React.FC<ChatInputProps> = ({
         value={text}
         onChangeText={setText}
         style={styles.textInput}
-        placeholder="Užduok klausimą"
+        placeholder="Ask anything"
       />
       <Pressable
         onPress={handleSend}
         style={styles.sendButton}
         disabled={!text.trim()}
       >
-        <Text style={styles.sendButtonText}>Siųsti</Text>
+        <Text style={styles.sendButtonText}>Ask</Text>
       </Pressable>
     </View>
   );

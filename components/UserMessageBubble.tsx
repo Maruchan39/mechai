@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { type Message } from './ChatBox';
 
-export type UserMessage = Message & { author: 'user' };
+export type UserMessage = Message & { role: 'user' };
 
 type UserMessageBubbleProps = {
   message: UserMessage;
@@ -13,7 +13,7 @@ export const UserMessageBubble: React.FC<UserMessageBubbleProps> = ({
 }) => {
   return (
     <View style={styles.container}>
-      <Text>{message.text}</Text>
+      <Text>{message.content}</Text>
     </View>
   );
 };

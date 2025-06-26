@@ -16,11 +16,11 @@ export const MessagesList: React.FC<MessagesListProps> = ({
 }) => {
   const renderMessages = () => {
     const isUserMessage = (message: Message): message is UserMessage => {
-      return message.author === 'user';
+      return message.role === 'user';
     };
 
     const isChatbotMessage = (message: Message): message is ChatbotMessage => {
-      return message.author === 'chatbot';
+      return message.role === 'assistant';
     };
 
     return (
