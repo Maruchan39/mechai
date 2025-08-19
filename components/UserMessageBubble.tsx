@@ -1,6 +1,6 @@
+import { Message } from '@/api/types';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { type Message } from './ChatBox';
 
 export type UserMessage = Message & { role: 'user' };
 

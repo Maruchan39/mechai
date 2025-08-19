@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { TextInput, StyleSheet, View, Pressable, Text } from 'react-native';
-import { Message } from './ChatBox';
-import { getChatbotResponseFromServer } from '../api/api';
+import { getChatbotResponseFromServer } from '../api/chatbot/getChatbotResponseFromServer';
 import { UserMessage } from './UserMessageBubble';
 import { ChatbotMessage } from './ChatbotMessageBubble';
+import { Message } from '@/api/types';
 
 type SetMessagesState = React.Dispatch<React.SetStateAction<Message[]>>;
 type SetLoadingState = React.Dispatch<React.SetStateAction<Boolean>>;

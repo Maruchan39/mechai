@@ -2,7 +2,7 @@ import React from 'react';
 import MarkdownIt from 'markdown-it';
 import RenderHtml from 'react-native-render-html';
 import { View, StyleSheet } from 'react-native';
-import { type Message } from './ChatBox';
+import { type Message } from '../screens/ChatBoxScreen';
 
 export type ChatbotMessage = Message & { role: 'assistant' };
 

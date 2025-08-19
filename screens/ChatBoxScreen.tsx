@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { ChatInput } from './ChatInput';
-import MessagesList from './MessagesList';
-
-export type Message = {
-  content: string;
-  role: 'user' | 'assistant';
-};
+import { ChatInput } from '../components/ChatInput';
+import MessagesList from '../components/MessagesList';
+import { Message } from '@/api/types';
 
 export const Chatbox = () => {
   const [messages, setMessages] = useState<Message[]>([]);

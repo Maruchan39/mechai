@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import UserMessageBubble, { UserMessage } from './UserMessageBubble';
-import { Message } from './ChatBox';
+import { Message } from '../screens/ChatBoxScreen';
 import ChatbotMessageBubble, { ChatbotMessage } from './ChatbotMessageBubble';
 import Loader from './Loader';
 

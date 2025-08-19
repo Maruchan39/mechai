@@ -1,5 +1,5 @@
 import { ChatbotMessage } from '@/components/ChatbotMessageBubble';
-import { Message } from '@/components/ChatBox';
+import { Message } from '../types';
 
 const BASE_URL = 'http://localhost:8080';
 
