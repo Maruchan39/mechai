@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextInput, StyleSheet, View, Pressable, Text } from 'react-native';
-import { getChatbotResponseFromServer } from '../api/chatbot/getChatbotResponseFromServer';
+import { getChatbotResponseFromServer } from '../api/chatbot/chatbot';
 import { UserMessage } from './UserMessageBubble';
 import { ChatbotMessage } from './ChatbotMessageBubble';
 import { Message } from '@/api/types';
