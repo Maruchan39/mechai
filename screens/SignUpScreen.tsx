@@ -1,38 +1,46 @@
 import React, { useState, useContext } from 'react';
 import { View, TextInput, Text, StyleSheet, Pressable } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
-import { RootStackParamList } from '../navigation/RootNavigator';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/RootNavigator';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
 
-export const LoginScreen = ({ navigation }: Props) => {
+export const SignUpScreen = ({ navigation }: Props) => {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleLogin = async () => {
+  const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
     try {
-      const res = await fetch('http://localhost:8080/auth/login', {
+      const res = await fetch('http://localhost:8080/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
+
       const data = await res.json();
+
       if (data.token) {
         await login(data.token);
       } else {
-        alert('Invalid login');
+        alert(data.message || 'Sign up failed');
       }
     } catch (err) {
       console.error(err);
-      alert('Login failed');
+      alert('Sign up failed');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign in to use Mechai</Text>
+      <Text style={styles.title}>Create a Mechai Account</Text>
       <View style={styles.form}>
         <Text style={styles.label}>Email</Text>
         <TextInput
@@ -53,15 +61,26 @@ export const LoginScreen = ({ navigation }: Props) => {
           placeholder="Enter your password"
           placeholderTextColor="#888"
         />
-        <Pressable onPress={handleLogin} style={styles.loginButton}>
-          <Text style={styles.loginButtonText}>Login</Text>
+        <Text style={styles.label}>Confirm Password</Text>
+        <TextInput
+          style={styles.input}
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          secureTextEntry
+          placeholder="Confirm your password"
+          placeholderTextColor="#888"
+        />
+        <Pressable onPress={handleSignUp} style={styles.signUpButton}>
+          <Text style={styles.signUpButtonText}>Sign Up</Text>
         </Pressable>
 
         <Pressable
-          onPress={() => navigation.navigate('SignUp')}
-          style={styles.signUpButton}
+          onPress={() => navigation.navigate('Login')}
+          style={styles.backToLogin}
         >
-          <Text style={styles.signUpButtonText}>Sign Up</Text>
+          <Text style={styles.backToLoginText}>
+            Already have an account? Login
+          </Text>
         </Pressable>
       </View>
     </View>
@@ -101,30 +120,25 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontSize: 16,
   },
-  loginButton: {
+  signUpButton: {
     backgroundColor: '#000',
     paddingVertical: 14,
     borderRadius: 8,
     marginTop: 10,
   },
-  loginButtonText: {
+  signUpButtonText: {
     color: '#fff',
     fontWeight: '600',
     fontSize: 16,
     textAlign: 'center',
   },
-  signUpButton: {
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#000',
-    paddingVertical: 14,
-    borderRadius: 8,
-    marginTop: 12,
+  backToLogin: {
+    marginTop: 15,
   },
-  signUpButtonText: {
+  backToLoginText: {
     color: '#000',
-    fontWeight: '600',
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
+    textDecorationLine: 'underline',
   },
 });

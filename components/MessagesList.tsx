@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import UserMessageBubble, { UserMessage } from './UserMessageBubble';
-import { Message } from '../screens/ChatBoxScreen';
 import ChatbotMessageBubble, { ChatbotMessage } from './ChatbotMessageBubble';
 import Loader from './Loader';
+import { Message } from '@/api/types';
 
 type MessagesListProps = {
   messages: Message[];

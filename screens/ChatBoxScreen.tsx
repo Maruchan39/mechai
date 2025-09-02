@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { ChatInput } from '../components/ChatInput';
 import MessagesList from '../components/MessagesList';
 import { Message } from '@/api/types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/RootNavigator';
 
-export const Chatbox = () => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Chatbox'>;
+
+export const ChatboxScreen = ({ navigation }: Props) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState<Boolean>(false);
 

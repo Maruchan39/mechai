@@ -1,35 +1,9 @@
-import React, { useContext } from 'react';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AuthProvider, AuthContext } from '../context/AuthContext';
-import { Chatbox } from '@/screens/ChatBoxScreen';
-import { LoginScreen } from '@/screens/LoginScreen';
-
-const Stack = createNativeStackNavigator();
-
-function RootNavigator() {
-  const { token, loading } = useContext(AuthContext);
-
-  if (loading) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
-
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {token ? (
-        <Stack.Screen name="Chatbox" component={Chatbox} />
-      ) : (
-        <Stack.Screen name="Login" component={LoginScreen} />
-      )}
-    </Stack.Navigator>
-  );
-}
+import { AuthProvider } from '../context/AuthContext';
+import RootNavigator from '../navigation/RootNavigator';
 
 export default function Index() {
   return (
